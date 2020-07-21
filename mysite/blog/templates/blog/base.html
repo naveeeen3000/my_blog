@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static  'css/blog.css' %}"/>
+    <!-- medium-editor -->
+    <script src="//cdn.jsdelivr.net/npm/medium-editor@latest/dist/js/medium-editor.min.js"></script>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/medium-editor@latest/dist/css/medium-editor.min.css" type="text/css" media="screen" charset="utf-8">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark techfont custom-navbar">
+       <div class="collapse navbar-collapse container">
+        <ul class="navbar-nav mr-auto">
+          <li><a class="navbar-brand" href="{% url 'post_list' %}">Blog</a></li>
+          <li><a class="nav-link" href="{% url 'about' %}">About</a></li>
+          <li><a class="nav-link" href="https://www.github.com">github</a></li>
+          <li><a class="nav-link" href="https://www.linkedin.com">linkedin </a></li>
+        </ul>
+        <ul class='nav justify-content-end'>
+          {% if user.is_authenticated %}
+          <li>
+            <a href="{% url 'post_new' %}">New Post</a>
+            <a href="{% url 'post_draft_list' %}">Drafts</a>
+            <a href="{% url 'logout' %}">Log out</a>
+          </li>
+          <li>
+            <a>Welcome : {{user.username}}</a>
+          </li>
+          {% else %}
+          <li class="nav-item"><a class="nav-link active" href="{% url 'login' %}">Login</a></li>
+          {% endif %}
+        </ul>
+      </div>
+    </nav> -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand mb-0 h1 brand" href="{% url 'post_list' %}">My Blog</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <!-- <li class="nav-item active">
+            <a class="nav-link" href="">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item"> -->
+            <a class="nav-link" href="{% url 'about' %}">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="https://www.github.com" aria-disabled="true">github</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="https://www.linkedin.com" aria-disabled="true">linkedin</a>
+          </li>
+        </ul>
+        <ul class="nav justify-content-right">
+          {% if user.is_authenticated %}
+          <li>
+            <a href="{% url 'post_new' %}" class="btn btn-info">New Post</a>
+            <a href="{% url 'post_draft_list' %}" class="btn btn-info">Drafts</a>
+            <a href="{% url 'logout' %}" class="btn btn-info">Log out</a>
+            <p>Welcome : {{user.username}}</p>
+          </li>
+          {% else %}
+          <li><a class="nav-link btn btn-primary" href="{% url 'login' %}">Login</a></li>
+          {% endif %}
+        </ul>
+      </div>
+    </nav>
+    <div class="content jumbotron">
+      <div class="row">
+        <div class="col-md-8">
+            <div class="blog_posts">
+              {% block content %}
+              {% endblock %}
+            </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
